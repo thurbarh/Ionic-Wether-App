@@ -1,0 +1,63 @@
+<ion-header no-border no-box-shadow>
+  <ion-toolbar padding-top>
+      <ion-searchbar placeholder="Search Location" (ionBlur)="getweatherBycity()" [(ngModel)]="cityname"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="ion-padding div-content">
+        <ion-row>
+          <ion-col>
+            <div class="top-content" *ngIf="currentweather">
+              <div class="country-holder">{{currentweather?.name}},</div>
+              <div class="city-holder">{{currentweather?.country}}</div>
+              <span class="date-holder">{{currentweather?.date}}</span>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+          <div class="middle-content">
+             <div class="dayholder">Today</div>
+           <ion-row>
+             <ion-col class="ion-align-self-end">
+                <ion-img [src]="currentweather?.icon" *ngIf="currentweather"></ion-img>
+            </ion-col>
+            <ion-col class="ion-align-self-start">
+                <span class="temperature">{{currentweather ? (currentweather?.temperature - 273.15).toFixed(0) : 0}}&deg;</span>
+            </ion-col>
+          </ion-row>
+            <div class="summary">{{currentweather?.description}}</div>
+          </div>
+          </ion-col>
+        </ion-row> 
+        <ion-row>
+          <ion-col class="bottom-col">
+             <div class="bottom-content" *ngIf="currentweather">
+                <ion-row>
+                   <div class="item-nav">
+                      <ion-item lines="none">
+                        <span slot="start" class="active">5 Days Forecast</span>
+                      </ion-item>
+                   </div>
+                  </ion-row>
+                  <ion-row>
+                      <div class="bottom-item">
+                          <ion-slides pager="false" [options]="slideOpts" class="ion-padding-top">
+                              <ion-slide *ngFor="let forecast of currentForecast">
+                                <ion-card>
+                                  <ion-card-content>
+                                    <div>{{forecast?.date}}</div>
+                                    <div>{{forecast?.time}}</div>
+                                    <ion-img [src]="forecast?.icon"></ion-img>
+                                    <div>{{forecast ? (forecast?.temperature - 273.15).toFixed(0) : 0}}&deg;</div>
+                                  </ion-card-content>
+                                </ion-card>
+                              </ion-slide>
+                          </ion-slides>
+                      </div>
+                   </ion-row>
+             </div>
+           </ion-col>
+        </ion-row>   
+      </div>  
+</ion-content>

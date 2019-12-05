@@ -1,0 +1,112 @@
+ion-content{
+    --background: linear-gradient(to bottom,rgb(50, 109, 239),rgb(116, 160, 254));
+    --color: rgb(255, 255, 255);
+    .content-wrap{
+    height: 100%;
+    .header{
+        height: 10%;
+        ion-toolbar{
+            --background: transparent;
+            ion-icon{
+                font-size: 40px;
+                color: rgb(255, 255, 255);
+            }
+        }
+    }
+    .top-content{
+        height: 20%;
+        .top-content-wrap{
+            height: 100%;
+            position: relative;
+            font-size: 25px;
+            .date-holder{
+                font-size: 14px;
+                color: rgb(237, 231, 231);
+            }
+        }
+    }
+    .middle-content{
+        height: 35%;
+        .middle-content-wrap{
+            height: 100%;
+            position: relative;
+            text-align: center;
+            font-size: 25px;
+            .weather-elem-group{
+                position: absolute;
+                bottom: 30%;
+                //left: 25%;
+                width: 100%;
+                
+            .weather-items{
+                font-size: 60px;
+                font-weight: bold;
+                ion-img{
+                    vertical-align: middle;
+                    width: 120px;
+                    height: 80px;
+                    float: right;
+                }
+                span{
+                    float: left;
+                }
+                .temperature{
+                    ion-slides{
+                    width: 10px;
+                    height: 40px;
+                }
+            }
+        }
+           
+            .condition{
+                font-size: 15px;
+                color: rgb(237, 231, 231);
+            }
+        }
+      }
+    }
+    .bottom-content{
+        height: 35%;
+        .bottom-content-wrap{
+            height: 100%;
+            position: relative;
+            .item-nav{
+                height: 20%;
+               
+                ion-item{
+                    --background: transparent;
+                      color: #8fa1cb;
+                      font-size: 13px;
+                      .active{
+                        color: rgb(237, 231, 231);
+                    }
+                }
+               
+            }
+            .forecast{
+                height: 65%;
+                background: #75a1ff;
+                border-radius: 20px 0 0 20px;
+                ion-card{
+                    border-radius: 30px;
+                    height: 95%;
+                    box-shadow: none;
+                    background:#3f76f0 ;
+                    color: rgb(237, 231, 231);
+                    div{
+                    font-size: 11px;
+                     }
+                    ion-icon{
+                        font-size: 40px;
+                        font-weight: bold;
+                    }
+                }
+
+            }
+            .footer{
+                height: 15%;
+            }
+        }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+
+<ion-content scroll-y="true">
+  <div class="content-wrap">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+    <div class="header ion-padding">
+      <ion-row>
+      <ion-toolbar>
+        <ion-searchbar placeholder="Search Location" (ionBlur)="getweatherBycity()" [(ngModel)]="cityname"></ion-searchbar>
+      </ion-toolbar>
+    </ion-row>
+    </div>
+    <div class="top-content ion-padding">
+      <ion-row>
+      <div class="top-content-wrap" *ngIf="currentweather">
+       <div class="country-holder">{{currentweather?.name}},</div>
+       <div class="city-holder">{{currentweather?.country}}</div>
+       <span class="date-holder">{{currentweather?.date}}</span>
+      </div>
+    </ion-row>
+    </div>
+    <div class="middle-content">
+      <div class="middle-content-wrap">
+         <div class="weather-elem-group">
+          <div class="day-holder">Today</div>
+          <div class="weather-items">
+            <ion-row no-padding>
+              <ion-col class="ion-align-self-end">
+                  <ion-img [src]="currentweather?.icon" *ngIf="currentweather"></ion-img>
+              </ion-col>
+              <ion-col class="ion-align-self-start">
+                  <span class="temperature">{{currentweather ? (currentweather?.temperature - 273.15).toFixed(0) : 0}}&deg;</span>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="condition" >{{currentweather?.description}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-content ion-padding-start">
+        <div class="bottom-content-wrap">
+          <ion-row>
+          <div class="item-nav">
+            <ion-item lines="none">
+              <span slot="start" class="active">5 Days Forecast</span>
+            </ion-item>
+          </div>
+        </ion-row>
+          <div class="forecast">
+            <ion-row>
+            <ion-slides pager="false" [options]="slideOpts" class="ion-padding-top">
+             <ion-slide *ngFor="let forecast of currentForecast">
+               <ion-card>
+                 <ion-card-content>
+                   <div>{{forecast?.date}}</div>
+                   <div>{{forecast?.time}}</div>
+                   <ion-img [src]="forecast?.icon"></ion-img>
+                   <div>{{forecast ? (forecast?.temperature - 273.15).toFixed(0) : 0}}&deg;</div>
+                 </ion-card-content>
+               </ion-card>
+             </ion-slide>
+            </ion-slides>
+            </ion-row>
+          </div>
+          <div class="footer">
+
+          </div>
+        </div>
+    </div>
+  </div>
+</ion-content>
